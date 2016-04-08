@@ -1,0 +1,79 @@
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
+  <style type="text/css">
+
+  .progressLineardemoBasicUsage body {
+  padding: 20px; }
+.progressLineardemoBasicUsage md-progress-linear {
+  padding-top: 10px;
+  margin-bottom: 20px; }
+  </style>
+</head>
+
+
+<body ng-app="DemoApp" ng-cloak>
+  <md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center" layout-fill="layout-fill">
+  <div flex-xs flex-gt-xs="50" layout="column">
+    <md-card >
+    <md-card-title>
+    <md-card-title-text>
+    <div class="md-headline"style="text-align: center;color: purple;">Welcome to the FedEx Shipment Manager</div>
+  </md-card-title-text>
+</md-card-title>
+<br />
+<br />
+<md-card-content layout-align="end center">
+<md-input-container class="md-block">
+<label>Username</label>
+<input type="text" ng-model="username" required>
+</md-input-container>
+<md-input-container class="md-block">
+<label>Password</label>
+<input type="password" ng-model="password" required>
+</md-input-container>
+</md-card-content>
+<md-card-actions layout="row" layout-align="end">
+        <md-button href="C:\hackathon\no.html" md-no-ink="md-no-ink">Forgot Password</md-button>
+        <div flex="flex"></div>
+    <md-button href="C:\hackathon\to.html" ng-disabled="!(!!username && !!password )" class="md-raised md-primary">Login</md-button>
+</md-card-actions>
+<md-progress-linear class="md-primary" md-mode="determinate" value="25"></md-progress-linear>
+</md-card>
+</div>
+</md-content>
+
+
+
+<!-- if they're logged in, no account setup -->
+
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+<!-- Angular Material Library -->
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+<!-- Your application bootstrap  -->
+<script type="text/javascript">
+
+angular.module('DemoApp', ['ngMaterial'])
+.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('purple')
+    .accentPalette('orange');
+});
+       </script>
+     </body>
+     </html>
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+-->

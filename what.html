@@ -1,0 +1,283 @@
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <style type="text/css">
+  .progressLineardemoBasicUsage body {
+  padding: 20px; }
+.progressLineardemoBasicUsage md-progress-linear {
+  padding-top: 10px;
+  margin-bottom: 20px; }
+
+  table, th , td  {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table tr:nth-child(odd)    {
+    background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+
+    </style>
+</head>
+
+
+<body ng-app="DemoApp" ng-cloak>
+  <md-content class="md-padding" layout="column" layout-align="center center">
+  <div layout="column">
+    <md-card>
+    <md-card-title>
+    <md-card-title-text class="md-headline"style="text-align: center;color: purple;">
+    What are we shipping?
+  </md-card-title-text>
+</md-card-title>
+<br />
+<md-card-content layout-align="end center">
+<section layout="row" flex>
+    <md-content flex layout-padding>
+        <md-content class="md-padding" layout-xs="column" layout="row">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Previous Order</span>
+                        <span class="md-subhead">50 iPhones</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content layout="row" layout-align="space-between">
+                    <div class="md-media-l card-media"></div>
+                    <md-card-actions layout="column">
+                        <md-button class="md-icon-button" aria-label="Settings">
+                            <i class="fa fa-pencil-square-o fa-2x"></i>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="Share">
+                            <i class="fa fa-trash-o fa-2x"></i>
+                        </md-button>
+                    </md-card-actions>
+                </md-card-content>
+            </md-card>
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Placed: 02/01/2016</span>
+                        <span class="md-subhead">20 Blackberries</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content layout="row" layout-align="space-between">
+                    <div class="md-media-l card-media"></div>
+                    <md-card-actions layout="column">
+                        <md-button class="md-icon-button" aria-label="Settings">
+                            <i class="fa fa-pencil-square-o fa-2x"></i>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="Share">
+                            <i class="fa fa-trash-o fa-2x"></i>
+                        </md-button>
+                    </md-card-actions>
+                </md-card-content>
+            </md-card>
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Placed: 01/15/2016</span>
+                        <span class="md-subhead">60 iPads</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content layout="row" layout-align="space-between">
+                    <div class="md-media-l card-media"></div>
+                    <md-card-actions layout="column">
+                        <md-button class="md-icon-button" aria-label="Settings">
+                            <i class="fa fa-pencil-square-o fa-2x"></i>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="Share">
+                            <i class="fa fa-trash-o fa-2x"></i>
+                        </md-button>
+                    </md-card-actions>
+                </md-card-content>
+            </md-card>
+        </md-content>
+        <md-content class="md-padding" layout-xs="column" layout="row">
+            <div flex-xl flex-gt-xl="200" layout="row">
+                <md-card>
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-title">Shipment Details</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content layout-align="end center">
+
+                        <md-datepicker ng-model="myDate" md-placeholder="Ship Date"></md-datepicker>
+                        <md-input-container class="md-block">
+                            <label>Number of Packages</label>
+                            <input type="number" name="shipNbrPackages" ng-model="shipment.packagesNbr">
+                        </md-input-container>
+                      <md-input-container class="md-block">
+                            <label>Weight (lb)</label>
+                            <input ng-model="shipment.weight" type="number" step="1">
+                          </md-input-container>
+                        <md-input-container class="md-block">
+                            <md-tooltip md-direction="right">Your shipment is covered up to US$100 or US$9.07 per
+                                pound (whichever is greater). For more coverage, please declare a greater value.
+                            </md-tooltip>
+                            <label>Declared Value (USD)</label>
+                            <input type="number" name="shipDeclaredValue" ng-model="shipment.declaredValue"
+                                   required>
+                        </md-input-container>
+                        <div ng-app="myApp" ng-controller="myCtrl">
+                            <md-input-container>
+                                <label>Package Type</label>
+                                <md-select ng-model="packageType" value="{{packageType}}">
+                                    <md-option ng-value="blank"></md-option>
+                                    <md-option ng-value="fdxEnv">FedEx Envelope</md-option>
+                                    <md-option ng-value="fdxPak">FedEx Pak</md-option>
+                                    <md-option ng-value="fdxBox">FedEx Box</md-option>
+                                    <md-option ng-value="yourPack">Your Packaging</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </md-card-content>
+                </md-card>
+
+
+
+<div flex-xl flex-gt-xl="200" layout="column">
+        <md-card>
+    <md-card-header>
+        <md-card-header-text>
+            <span class="md-title">Shipment Options</span>
+        </md-card-header-text>
+    </md-card-header>
+    <md-card-content layout-align="end center">
+        <md-select placeholder="Shipment Options" ng-model="ship.type" style="min-width: 200px;">
+            <md-option ng-value="180.49" default>First Overnight $180.49 08:00 am Fri Mar 11, 2016
+            </md-option>
+            <md-option ng-value="168.49">Priority Overnight $168.49 12:00 pm Sat Mar 12, 2016
+            </md-option>
+            <md-option ng-value="150.94">Standard Overnight $150.94 03:00 pm Mon Mar 14, 2016
+            </md-option>
+            <md-option ng-value="82.28">2Day AM $82.28 10:30 am Tue Mar 15, 2016</md-option>
+            <md-option ng-value="71.94">2Day $71.94 04:30 pm Tue Mar 15, 2016</md-option>
+            <md-option ng-value="52.79">Express Saver $52.79 04:30 pm Wed Mar 16, 2016</md-option>
+            <md-option ng-value="18.80">Ground $18.80 3 Business Days</md-option>
+        </md-select>
+    </md-card-content>
+</md-card>
+
+    </div>
+
+
+
+
+
+
+            </div>
+        </md-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </md-content>
+    <md-sidenav
+        class="md-sidenav-right md-whiteframe-4dp" md-component-id="right"
+        md-is-locked-open="$mdMedia('gt-md')"
+        md-disable-backdrop
+        md-whiteframe="4">
+    <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Order Info</h1>
+    </md-toolbar>
+    <div ng-hide="!!!shipment.weight" class="ng-hide">
+        <md-content layout-padding>
+            <h2 class="md-title">Cost Breakdown</h2>
+            <p style="float: left;">CO to MEM, {{shipment.weight}} lb</p>
+            <p style="float: right;" ng-show="ship.type">${{ship.type}}</p>
+            <p style="float: right;" ng-show="!!!ship.type">$18.80&nbsp;</p>
+            <div ng-hide="!!!shipment.declaredValue" class="ng-hide">
+                <p style="float: left;">Declared Value</p >
+                <p style="float: right;">$20</p>
+            </div>
+            <p style="color: purple;float: left;">Frequent Shipper Discount</p>
+            <p style="color: purple;float: right;">- $10</p>
+            <h3 style="float: left;" ng-show="shipment.declaredValue && shipment.weight && ship.type">Total</h3>
+            <h3 style="float: right;" ng-show="shipment.declaredValue && shipment.weight && ship.type">${{ship.type
+                + 10}}</h3>
+            <h3 style="float: left;" ng-show="shipment.weight && !!!shipment.declaredValue && ship.type">Total</h3>
+            <h3 style="float: right;" ng-show="shipment.weight && !!!shipment.declaredValue && ship.type">
+                ${{ship.type +
+                10}}</h3>
+            <h3 style="float: left;" ng-show="shipment.weight && shipment.declaredValue && !!!ship.type">Total</h3>
+            <h3 style="float: right;" ng-show="shipment.weight && shipment.declaredValue && !!!ship.type">
+                ${{ship.type}}</h3>
+
+        </md-content>
+    </div>
+
+    <md-button ng-hide="!!!shipment.weight" href="C:\hackathon\done.html"
+               class="md-raised md-primary">Complete Order
+    </md-button>
+
+</md-sidenav>
+
+</section>
+</md-card-content>
+<md-progress-linear class="md-primary" md-mode="determinate" value="75"></md-progress-linear>
+</md-card>
+</div>
+</md-content>
+
+<!-- if they're logged in, no account setup -->
+
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+<!-- Angular Material Library -->
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+<!-- Your application bootstrap  -->
+<script type="text/javascript">
+    /**
+     * You must include the dependency on 'ngMaterial'
+     */
+
+    angular.module('DemoApp', ['ngMaterial'])
+            .config(function ($mdThemingProvider) {
+                $mdThemingProvider.theme('default')
+                        .primaryPalette('purple')
+                        .accentPalette('orange');
+            })
+            .controller('myCtrl', function ($scope) {
+                $scope.packageType = "";
+                $scope.myDate = new Date();
+            });
+
+
+</script>
+
+</body>
+
+</html>
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+-->
